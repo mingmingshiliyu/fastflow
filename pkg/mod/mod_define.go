@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/shiningrush/fastflow/pkg/entity"
-	"github.com/shiningrush/fastflow/pkg/entity/run"
+	"github.com/mingmingshiliyu/fastflow/pkg/entity"
+	"github.com/mingmingshiliyu/fastflow/pkg/entity/run"
 )
 
 var (

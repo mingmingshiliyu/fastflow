@@ -4,10 +4,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/shiningrush/fastflow/pkg/entity"
-	"github.com/shiningrush/fastflow/pkg/event"
-	"github.com/shiningrush/fastflow/pkg/log"
-	"github.com/shiningrush/fastflow/pkg/utils/data"
+	"github.com/mingmingshiliyu/fastflow/pkg/entity"
+	"github.com/mingmingshiliyu/fastflow/pkg/event"
+	"github.com/mingmingshiliyu/fastflow/pkg/log"
+	"github.com/mingmingshiliyu/fastflow/pkg/utils/data"
 	"github.com/shiningrush/goevent"
 )
 

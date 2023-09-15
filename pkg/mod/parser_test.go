@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/shiningrush/fastflow/pkg/entity"
-	"github.com/shiningrush/fastflow/pkg/log"
+	"github.com/mingmingshiliyu/fastflow/pkg/entity"
+	"github.com/mingmingshiliyu/fastflow/pkg/log"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )

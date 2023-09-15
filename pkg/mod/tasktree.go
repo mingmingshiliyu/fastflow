@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/shiningrush/fastflow/pkg/entity"
+	"github.com/mingmingshiliyu/fastflow/pkg/entity"
 )
 
 const (

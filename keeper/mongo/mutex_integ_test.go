@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/shiningrush/fastflow/pkg/mod"
-	"github.com/shiningrush/fastflow/pkg/utils/data"
+	"github.com/mingmingshiliyu/fastflow/pkg/mod"
+	"github.com/mingmingshiliyu/fastflow/pkg/utils/data"
 	"github.com/stretchr/testify/assert"
 )
 
