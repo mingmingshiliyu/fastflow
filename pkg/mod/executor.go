@@ -182,6 +182,10 @@ func (e *DefExecutor) workerDo(taskIns *entity.TaskInstance) {
 
 func (e *DefExecutor) runAction(taskIns *entity.TaskInstance) error {
 	act := ActionMap[taskIns.ActionName]
+	a := map[string]run.Action{}
+	for k, v := range ActionMap {
+		a[k] = v
+	}
 	if act == nil {
 		return fmt.Errorf("action not found: %s", taskIns.ActionName)
 	}

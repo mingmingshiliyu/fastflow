@@ -1,11 +1,21 @@
 id: "test-dag"
 name: "test"
+vars:
+  fileName:
+    desc: "the file name"
+    defaultValue: "file.txt"
+  filePath:
+    desc: "file path"
+    defaultValue: "/tmp/"
 tasks:
   - id: "task1"
     actionName: "PrintAction"
   - id: "task2"
-    actionName: "PrintAction"
+    actionName: "PrintAction1"
     dependOn: ["task1"]
   - id: "task3"
-    actionName: "PrintAction"
+    actionName: "PrintAction1"
+    params:
+      writeName: "{{fileName}}"
+      writePath: "{{filePath}}"
     dependOn: ["task2"]

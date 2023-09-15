@@ -1,6 +1,9 @@
 package mod
 
 import (
+	"errors"
+	"reflect"
+	"sync"
 	"time"
 
 	"github.com/shiningrush/fastflow/pkg/entity"
@@ -9,12 +12,14 @@ import (
 
 var (
 	ActionMap = map[string]run.Action{}
-
-	defExc       Executor
-	defStore     Store
-	defKeeper    Keeper
-	defParser    Parser
-	defCommander Commander
+	//用于存储已经注册的action类型
+	registeredActionMap = map[string]reflect.Type{}
+	lockActionRegister  sync.Mutex
+	defExc              Executor
+	defStore            Store
+	defKeeper           Keeper
+	defParser           Parser
+	defCommander        Commander
 )
 
 // Commander used to execute command
@@ -194,3 +199,40 @@ func SetParser(e Parser) {
 func GetParser() Parser {
 	return defParser
 }
+
+func GetCanRunAction(param string) run.Action {
+	lockActionRegister.Lock()
+	action := registeredActionMap[param]
+	if action == nil {
+		return nil
+	}
+	lockActionRegister.Unlock()
+	return reflect.New(action).Elem().Interface().(run.Action)
+}
+
+func RegisterCanRunAction(actionInter interface{}) error {
+	action := reflect.TypeOf(actionInter)
+	lockActionRegister.Lock()
+	if registeredActionMap[action.Name()] != nil {
+		return errors.New("action already exists!")
+	}
+	registeredActionMap[action.Name()] = action
+	lockActionRegister.Unlock()
+	return nil
+}
+
+//action注册和获取
+
+//typeReflect := make(map[string]reflect.Type)
+//	name := reflect.TypeOf(PrintAction{}).Name()
+//	name1 := reflect.TypeOf(PrintAction1{}).Name()
+//	typeReflect[name] = reflect.TypeOf(PrintAction{})
+//	typeReflect[name1] = reflect.TypeOf(PrintAction1{})
+//	params := make([]run.Action, 0)
+//	//of := reflect.TypeOf(PrintAction{})
+//	//tp := reflect.TypeOf(PrintAction1{})
+//	instance1 := reflect.New(typeReflect[name]).Elem().Interface().(run.Action)
+//	instance2 := reflect.New(typeReflect[name1]).Elem().Interface().(run.Action)
+//	params = append(params, instance1)
+
+//根据字符串生成结构体

@@ -1,6 +1,7 @@
 package mod
 
 import (
+	"fmt"
 	"testing"
 	"time"
 
@@ -27,4 +28,9 @@ func TestCommInterval(t *testing.T) {
 	assert.Equal(t, time.Second, opt.syncInterval)
 	CommSyncInterval(0)(&opt)
 	assert.Equal(t, time.Second, opt.syncInterval)
+}
+
+func TestActionSearcher(t *testing.T) {
+	searcher := ActionSearcher{}
+	fmt.Print(searcher.Get("a"))
 }
