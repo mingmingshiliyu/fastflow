@@ -50,6 +50,7 @@ type ExecuteContext interface {
 type ShareDataOperator interface {
 	Get(key string) (string, bool)
 	Set(key string, val string)
+	Iterator(callback func(string, string))
 }
 
 var _ ExecuteContext = &DefExecuteContext{}

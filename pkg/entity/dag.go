@@ -164,6 +164,15 @@ func (d *ShareData) Set(key string, val string) {
 	}
 }
 
+// Iterator iterate all keys,values
+func (d *ShareData) Iterator(callback func(string, string)) {
+	d.mutex.Lock()
+	defer d.mutex.Unlock()
+	for k, v := range d.Dict {
+		callback(k, v)
+	}
+}
+
 // DagInstanceVars
 type DagInstanceVars map[string]DagInstanceVar
 
